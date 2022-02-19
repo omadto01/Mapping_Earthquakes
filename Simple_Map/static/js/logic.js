@@ -2,7 +2,7 @@
 console.log("working");
 
 // Create the map object with a center and zoom level.
-let map = L.map('mapid').setView([40.7, -94.5], 4);
+// let map = L.map('mapid').setView([40.7, -94.5], 4);
 
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -12,7 +12,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 });
 
 // Then we add our 'graymap' tile layer to the map.
-streets.addTo(map);
+// streets.addTo(map);
 
 
 //  Add a marker to the map for Los Angeles, California.
@@ -32,15 +32,14 @@ streets.addTo(map);
 //      fillColor:'#ffffal'
 //  }).addTo(map);
 
-
-// Get data from cities.js
+//Get data from cities.js
 let cityData = cities;
 
-// Loop through the cities array and create one marker for each city.
+//Loop through the cities array and create one marker for each city.
 cityData.forEach(function(city) {
     console.log(city)
     L.circlemarker(city.location, {
-        radius: city.population/200000
+        radius: city.population/200000,
         color: "black",
         fillColor:'#ffffal'
     })
@@ -48,6 +47,19 @@ cityData.forEach(function(city) {
   .addTo(map);
 });
 
+//Map a Single Line LAX TO SFO
+
+let map = L.map('mapid').setView([36.1733, -120.1794], 7);
+
+let line = [
+    [33.9416, -188.4085],
+    [37.6213, -122.3790]
+];
+
+// Create a polyline using the line coordinates and make the line red.
+L.polyline(line, {
+    color: "red"
+  }).addTo(map);
 
 
-
+//Map Multiple Lines
